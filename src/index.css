@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@layer {
+  .btn-product {
+    @apply px-8 py-4 text-center font-medium text-white bg-black w-full;
+  }
+
+  .btn-nav {
+    @apply bg-black px-4 py-2 font-medium text-white ml-4 lg:px-4;
+  }
+}
