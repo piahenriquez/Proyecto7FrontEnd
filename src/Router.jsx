@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Layout from "./components/Layout";
 import ProductList from "./components/Product/List";
 import ProductSingle from "./components/Product/Single";
+import Login from "./components/Auth/Login";
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
             <Route index element={<Home />} />
             <Route path="productos" element={<ProductList />} />
             <Route path="productos/:id" element={<ProductSingle />} />
+            <Route path="Iniciar-Sesion" element={<Login />} />
             </Route>
         </Routes>
       </BrowserRouter>
