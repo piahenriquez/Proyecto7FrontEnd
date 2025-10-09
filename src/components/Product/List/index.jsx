@@ -1,8 +1,17 @@
 import { useContext, useEffect } from "react";
-import ProductContext from "../../contexts/Product/ProductContext";
-import { Container, Grid, Card, CardContent, Typography, Box } from '@mui/material';
+import ProductContext from "../../../contexts/Product/ProductContext";
+import { 
+  Container, 
+  Grid, 
+  Card, 
+  CardContent, 
+  Typography, 
+  Box,
+  Button 
+} from '@mui/material';
+import { Link } from "react-router-dom";
 
-const Home = () => {
+const ProductList = () => {
   const ctx = useContext(ProductContext);
   const { products, getProducts } = ctx;
 
@@ -13,13 +22,13 @@ const Home = () => {
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
       <Typography 
-        variant="h3" 
+        variant="h4" 
         component="h1" 
         align="center" 
         gutterBottom
         sx={{ fontWeight: 'bold', color: '#4CAF50', mb: 4 }}
       >
-        🏺 Cerámicas Felices
+         Todos Nuestros Productos
       </Typography>
       
       {products.length === 0 ? (
@@ -29,7 +38,6 @@ const Home = () => {
       ) : (
         <Grid container spacing={3}>
           {products.map((product) => (
-            // 👇 CORREGIDO - MUI v6
             <Grid key={product._id} size={{ xs: 12, sm: 6, md: 4 }}>
               <Card 
                 sx={{ 
@@ -54,9 +62,23 @@ const Home = () => {
                     <Typography variant="h6" color="primary" gutterBottom>
                       ${product.price}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" gutterBottom>
                       Stock: {product.stock}
                     </Typography>
+                    <Button 
+                      variant="contained" 
+                      fullWidth
+                      component={Link}
+                      to={`/productos/${product._id}`}
+                      sx={{ 
+                        backgroundColor: '#4CAF50',
+                        '&:hover': {
+                          backgroundColor: '#45a049'
+                        }
+                      }}
+                    >
+                      Ver Detalles
+                    </Button>
                   </Box>
                 </CardContent>
               </Card>
@@ -68,4 +90,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ProductList;
