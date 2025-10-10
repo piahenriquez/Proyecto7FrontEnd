@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext } from "react"; 
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,11 +13,11 @@ import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router-dom";
+import CartContext from "../../contexts/Cart/CartContext";
 
 // Estilos del buscador
 const Search = styled("div")(({ theme }) => ({
@@ -59,57 +60,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const cartCtx = useContext(CartContext);
+  const { getCartItemsCount } = cartCtx;
 
-  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
   };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  // Menú desplegable del perfil
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose} component={Link} to="/perfil">
-        Mi Perfil
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose} component={Link} to="/mis-pedidos">
-        Mis Pedidos
-      </MenuItem>
-    </Menu>
-  );
-
-  // Menú móvil (ACTUALIZADO con navegación)
+  // Menú móvil
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
@@ -127,20 +92,29 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {/*- Navegación principal */}
+      {/* Navegación principal */}
       <MenuItem component={Link} to="/" onClick={handleMobileMenuClose}>
         <p>Inicio</p>
       </MenuItem>
-      <MenuItem component={Link} to="/productos" onClick={handleMobileMenuClose}>
+      <MenuItem
+        component={Link}
+        to="/productos"
+        onClick={handleMobileMenuClose}
+      >
         <p>Productos</p>
       </MenuItem>
-      
-      <MenuItem component={Link} to="/favoritos" onClick={handleMobileMenuClose}>
+
+      <MenuItem
+        component={Link}
+        to="/favoritos"
+        onClick={handleMobileMenuClose}
+      >
         <IconButton size="large" color="inherit">
           <FavoriteIcon />
         </IconButton>
         <p>Favoritos</p>
       </MenuItem>
+
       <MenuItem component={Link} to="/carrito" onClick={handleMobileMenuClose}>
         <IconButton size="large" color="inherit">
           <Badge badgeContent={2} color="error">
@@ -149,17 +123,17 @@ const Header = () => {
         </IconButton>
         <p>Carrito</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Mi Cuenta</p>
+
+      {/* Opciones de autenticación */}
+      <MenuItem component={Link} to="/registro" onClick={handleMobileMenuClose}>
+        <p>Crear Cuenta</p>
+      </MenuItem>
+      <MenuItem
+        component={Link}
+        to="/iniciar-sesion"
+        onClick={handleMobileMenuClose}
+      >
+        <p>Iniciar Sesión</p>
       </MenuItem>
     </Menu>
   );
@@ -193,7 +167,7 @@ const Header = () => {
               fontWeight: "bold",
             }}
           >
-            🏺 Cerámicas Felices
+            Cerámicas Felices
           </Typography>
 
           {/* Navegación principal (escritorio) */}
@@ -236,27 +210,33 @@ const Header = () => {
             </IconButton>
 
             <IconButton
-              size="large"
+            size="large"
+            color="inherit"
+            component={Link}
+            to="/carrito"
+          >
+            <Badge badgeContent={getCartItemsCount()} color="error"> 
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
+
+            {/* Botones de Login/Register */}
+            <Button
               color="inherit"
               component={Link}
-              to="/carrito"
+              to="/registro"
+              sx={{ mx: 1 }}
             >
-              <Badge badgeContent={2} color="error">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
-
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              Crear Cuenta
+            </Button>
+            <Button
               color="inherit"
+              component={Link}
+              to="/iniciar-sesion"
+              sx={{ mx: 1 }}
             >
-              <AccountCircle />
-            </IconButton>
+              Iniciar Sesión
+            </Button>
           </Box>
 
           {/* Menú móvil (icono de tres puntos) */}
@@ -275,9 +255,8 @@ const Header = () => {
         </Toolbar>
       </AppBar>
 
-      {/* Renderizar menús desplegables */}
+      {/* Renderizar menú móvil */}
       {renderMobileMenu}
-      {renderMenu}
     </Box>
   );
 };
