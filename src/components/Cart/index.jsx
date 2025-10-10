@@ -36,7 +36,7 @@ const Cart = () => {
     return (
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
-          🛒 Mi Carrito de Compras
+           Mi Carrito de Compras
         </Typography>
         
         <Box sx={{ 
@@ -73,7 +73,7 @@ const Cart = () => {
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        🛒 Mi Carrito de Compras
+         Mi Carrito de Compras
       </Typography>
       
       <Grid container spacing={3}>
