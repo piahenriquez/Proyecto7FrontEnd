@@ -91,33 +91,33 @@ const Header = () => {
         <p>Carrito</p>
       </MenuItem>
 
-      {/* Opciones de autenticación - Cambian según el estado */}
+      
       {authState ? (
         // USUARIO LOGEADO
-        <>
-          <MenuItem component={Link} to="/perfil" onClick={handleMobileMenuClose}>
+        [
+          <MenuItem key="perfil" component={Link} to="/perfil" onClick={handleMobileMenuClose}>
             <IconButton size="large" color="inherit">
               <AccountCircle />
             </IconButton>
             <p>Mi Perfil</p>
-          </MenuItem>
-          <MenuItem onClick={handleLogout}>
+          </MenuItem>,
+          <MenuItem key="logout" onClick={handleLogout}>
             <IconButton size="large" color="inherit">
               <Logout />
             </IconButton>
             <p>Cerrar Sesión</p>
-          </MenuItem>
-        </>
+          </MenuItem>,
+        ]
       ) : (
         // USUARIO NO LOGEADO
-        <>
-          <MenuItem component={Link} to="/registro" onClick={handleMobileMenuClose}>
+        [
+          <MenuItem key="registro" component={Link} to="/registro" onClick={handleMobileMenuClose}>
             <p>Crear Cuenta</p>
-          </MenuItem>
-          <MenuItem component={Link} to="/iniciar-sesion" onClick={handleMobileMenuClose}>
+          </MenuItem>,
+          <MenuItem key="iniciar" component={Link} to="/iniciar-sesion" onClick={handleMobileMenuClose}>
             <p>Iniciar Sesión</p>
-          </MenuItem>
-        </>
+          </MenuItem>,
+        ]
       )}
     </Menu>
   );

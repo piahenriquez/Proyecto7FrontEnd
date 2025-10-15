@@ -17,7 +17,7 @@ const ProductList = () => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [getProducts]);
 
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
