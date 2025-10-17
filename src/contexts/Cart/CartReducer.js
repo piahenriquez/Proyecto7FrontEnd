@@ -6,7 +6,7 @@ const CartReducer = (state, action) => {
         (item) => item._id === action.payload._id
       );
 
-      // Determinar cantidad a agregar (si el payload trae quantity, úsala; si no, por defecto 1)
+      // Determinar cantidad a agregar 
       const qtyToAdd = action.payload.quantity ? action.payload.quantity : 1;
 
       if (existingItem) {
@@ -64,6 +64,12 @@ const CartReducer = (state, action) => {
       return {
         ...state,
         cartItems: [],
+      };
+
+    case "SET_LOADING":
+      return {
+        ...state,
+        cartLoading: action.payload,
       };
 
     default:

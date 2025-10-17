@@ -14,6 +14,8 @@ import UserState from "./contexts/User/UserState.jsx";
 import AuthRoute from "./Routes/Auth";
 import PrivateRoute from "./Routes/Private";
 import Profile from "./components/Profile";
+import Success from "./components/Checkout/Success.jsx";
+import Cancel from "./components/Checkout/Cancel.jsx";
 
 
 const Router = () => {
@@ -33,6 +35,8 @@ const Router = () => {
             <Route path="carrito" element={<PrivateRoute component={Cart} />} />
             <Route path="favoritos" element={<PrivateRoute component={Favorites} />} />
             <Route path="perfil" element={<PrivateRoute component={Profile} />} />
+            <Route path="success" element={<PrivateRoute component={Success} />} />
+            <Route path="cancel" element={<PrivateRoute component={Cancel} />} />
             </Route>
         </Routes>
       </BrowserRouter>
