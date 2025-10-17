@@ -46,7 +46,7 @@ const CartState = (props) => {
         
         for (const ep of candidates) {
           try {
-            const response = await axiosClient.get(ep, { withCredentials: true }); // ← CAMBIÉ probe por response
+            const response = await axiosClient.get(ep, { withCredentials: true }); 
             if (response && response.status >= 200 && response.status < 300) {
               found = ep;
               cartEndpointRef.current = found;
@@ -116,7 +116,7 @@ const CartState = (props) => {
     }
   }, [authState, dispatch]);
 
-  // DEBE CARGAR AL INICIAR LA APLICACIÓN TAMBIÉN
+  
   useEffect(() => {
     console.log('🔄 CartState: authState cambió a:', authState);
     
@@ -146,7 +146,7 @@ const CartState = (props) => {
   // Cargar carrito al hacer el componente 
   useEffect(() => {
     console.log('🚀 CartState montado, authState:', authState);
-    // Este effect se ejecuta una vez al montar el componente
+    
     const initializeCart = async () => {
       if (authState) {
         await getCartFromBackend();
