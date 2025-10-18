@@ -14,6 +14,7 @@ import {
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoritesContext from "../../../contexts/Favorites/FavoritesContext";
+import CommentSection from "../../Comment";
 
 const ProductSingle = () => {
   const { id } = useParams();
@@ -133,6 +134,10 @@ const ProductSingle = () => {
           </Box>
         </Grid>
       </Grid>
+      {/* SECCIÓN DE COMENTARIOS  */}
+      <Box sx={{ mt: 6 }}>
+        <CommentSection productId={id} />
+      </Box>
     </Container>
   );
 };

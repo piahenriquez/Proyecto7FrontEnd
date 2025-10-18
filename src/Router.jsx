@@ -16,7 +16,7 @@ import PrivateRoute from "./Routes/Private";
 import Profile from "./components/Profile";
 import Success from "./components/Checkout/Success.jsx";
 import Cancel from "./components/Checkout/Cancel.jsx";
-
+import CommentState from "./contexts/Comment/CommentState.jsx";
 
 const Router = () => {
   return (
@@ -24,25 +24,48 @@ const Router = () => {
       <ProductState>
         <CartState>
           <FavoritesState>
-            <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="productos" element={<ProductList />} />
-            <Route path="productos/:id" element={<ProductSingle />} />
-            <Route path="iniciar-sesion" element={<AuthRoute component={Login} />} />
-            <Route path="registro" element={<AuthRoute component={Register} />} />
-            <Route path="carrito" element={<PrivateRoute component={Cart} />} />
-            <Route path="favoritos" element={<PrivateRoute component={Favorites} />} />
-            <Route path="perfil" element={<PrivateRoute component={Profile} />} />
-            <Route path="success" element={<PrivateRoute component={Success} />} />
-            <Route path="cancel" element={<PrivateRoute component={Cancel} />} />
-            </Route>
-        </Routes>
-      </BrowserRouter>
-      </FavoritesState>
-      </CartState>
-    </ProductState>
+            <CommentState>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="productos" element={<ProductList />} />
+                    <Route path="productos/:id" element={<ProductSingle />} />
+                    <Route
+                      path="iniciar-sesion"
+                      element={<AuthRoute component={Login} />}
+                    />
+                    <Route
+                      path="registro"
+                      element={<AuthRoute component={Register} />}
+                    />
+                    <Route
+                      path="carrito"
+                      element={<PrivateRoute component={Cart} />}
+                    />
+                    <Route
+                      path="favoritos"
+                      element={<PrivateRoute component={Favorites} />}
+                    />
+                    <Route
+                      path="perfil"
+                      element={<PrivateRoute component={Profile} />}
+                    />
+                    <Route
+                      path="success"
+                      element={<PrivateRoute component={Success} />}
+                    />
+                    <Route
+                      path="cancel"
+                      element={<PrivateRoute component={Cancel} />}
+                    />
+                  </Route>
+                </Routes>
+              </BrowserRouter>
+            </CommentState>
+          </FavoritesState>
+        </CartState>
+      </ProductState>
     </UserState>
   );
 };
