@@ -1,16 +1,83 @@
-# React + Vite
+#  Proyecto eCommerce: Cerámicas Felices
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una moderna aplicación de comercio electrónico para la venta de macetas y piezas de cerámica artesanales. Desarrollada con **React** y **Material UI** para el *frontend*, y utilizando **Stripe** para gestionar las pasarelas de pago.
 
-Currently, two official plugins are available:
+##  Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+###  Frontend
+- **Framework**: React.js con Vite
+- **UI Library**: Material-UI (MUI)
+- **Estado Global**: Context API + useReducer
+- **Ruteo**: React Router DOM
+- **HTTP Client**: Axios
 
-## React Compiler
+###  Backend
+- **Plataforma**: Node.js con Express
+- **Base de datos**: MongoDB con Mongoose
+- **Autenticación**: JWT (JSON Web Tokens)
+- **Pasarela de pago**: Stripe Integration
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
 
-## Expanding the ESLint configuration
+###  Funcionalidades de Seguridad
+- Autenticación JWT con refresh tokens
+- Validación de formularios
+- Protección de rutas privadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 🛠️ Tecnologías Utilizadas
+
+### Frontend
+```json
+{
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-router-dom": "^6.8.0",
+  "@mui/material": "^5.11.0",
+  "axios": "^1.3.0",
+  "context": "Estado global personalizado"
+}
+``` 
+
+### Backend
+```json
+{
+  "express": "^4.18.0",
+  "mongoose": "^6.8.0",
+  "jsonwebtoken": "^9.0.0",
+  "stripe": "^11.0.0",
+  "bcryptjs": "^2.4.3",
+  "cors": "^2.8.5"
+}
+```
+##  Puesta en Marcha (Setup)
+
+Sigue estos pasos para levantar el proyecto en tu entorno local.
+
+### 1. Clonar el Repositorio
+
+```bash
+git clone 
+cd 
+```
+# Instala las dependencias del backend y del front end 
+```bash
+npm install
+```
+# Configurar variables de entorno importante 
+# Backend
+```bash
+PORT=3005
+MONGODB_URI=
+SECRET=
+STRIPE_SECRET_KEY=
+STRIPE_SUCCESS_URL=
+STRIPE_CANCEL_URL=
+```
+# Frontend
+```bash
+VITE_BACKEND_URL=
+```
+# Ejecutar 
+```bash
+npm run dev
+```

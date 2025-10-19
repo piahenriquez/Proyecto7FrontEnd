@@ -148,7 +148,7 @@ const Header = () => {
           zIndex: 1
         }}
       >
-        🌟 Cerámicas Felices
+         Cerámicas Felices
       </MenuItem>
 
       
